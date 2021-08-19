@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import edu.bit.ex.page.Criteria;
+import edu.bit.ex.page.PageVO;
 import edu.bit.ex.service.BoardService;
 import edu.bit.ex.service.ProductMainService;
 import edu.bit.ex.vo.BoardVO;
@@ -203,17 +205,20 @@ public class BoardController {
 
 	// 마이페이지 (후기)리스트
 	@GetMapping("/board/my_review")
-	public String my_review(Model model, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
+	public String my_review(Criteria cri,Model model, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
 		
 		log.info("my_review() Principal.." + principal.getName());
-		
-		log.info("my_review()..: Principal" + ctx.getMemberVO().getMember_idx());
+		log.info("my_review()..: Principal" +ctx.getMemberVO().getMember_idx());
 		
 		log.info("Principal" + ctx.getMemberVO().getMember_idx());
-		
 		List<BoardVO> reviewList = boardService.getReviewList(ctx.getMemberVO().getMember_idx());
 
+//		log.info(cri);
 		model.addAttribute("my_review", reviewList);
+		model.addAttribute("my_review", boardService.getReviewList(cri));
+		int total=boardService.getTotal(cri);
+		log.info("total"+total);
+		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
 		log.info("List<boardVO> reviewList" + reviewList);
 
@@ -278,7 +283,6 @@ public class BoardController {
 
 
 	// 관리자 주문내역 리스트
-	@PreAuthorize("hasRole(ROLE_'MEMBER') or hasRole(ROLE_'ADMIN')")
 	@GetMapping("/board/adminList")
 	public String adminList(Model model,Principal principal) {
 

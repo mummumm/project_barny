@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
 import edu.bit.ex.vo.MemberVO;
 import edu.bit.ex.vo.OrderDetailVO;
@@ -76,6 +77,10 @@ public interface BoardMapper {
 	
 	//포인트
 	public List<MemberVO> getPointList(int member_idx);
+
+	public List<BoardVO> getListWithPaging(Criteria criteria);
+
+	public int getTotalCount(Criteria cri);
 
 
 }

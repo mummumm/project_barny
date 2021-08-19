@@ -169,6 +169,18 @@
 
     </div>
 </div>
+<c:if test="${pageMaker.pre}">
+         <a href="my_review${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+      </c:if>
+
+      <c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }" >
+<%--          <c:out value="${pageMaker.cri.pageNum == idx?'':''}" /> --%>
+         <a href="my_review${pageMaker.makeQuery(idx)}">${idx}</a>
+      </c:forEach>
+      
+      <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+         <a href="my_review${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+      </c:if> <br>
 
 
 <!-- Footer-->

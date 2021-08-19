@@ -2,6 +2,7 @@ package edu.bit.ex.service;
 
 import java.util.List;
 
+import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
 import edu.bit.ex.vo.MemberVO;
 import edu.bit.ex.vo.OrderDetailVO;
@@ -83,6 +84,10 @@ public interface BoardService {
 	public void ship_remove(int ship_id);
 	//포인트
 	public List<MemberVO> getPointList(int member_idx);
+
+	public int getTotal(Criteria cri);
+
+	List<BoardVO> getReviewList(Criteria criteria);
 
 
 

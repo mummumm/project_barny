@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.bit.ex.mapper.BoardMapper;
+import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
 import edu.bit.ex.vo.MemberVO;
 import edu.bit.ex.vo.OrderDetailVO;
@@ -174,6 +175,19 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<MemberVO> getPointList(int member_idx) {
 		return boardMapper.getPointList(member_idx);
+	}
+
+	 //페이징 처리함수
+	   @Override
+	   public int getTotal(Criteria cri) {
+		   log.info("service:getTotal()..");
+		   return boardMapper.getTotalCount(cri);
+	}
+
+	   @Override
+	   public List<BoardVO> getReviewList(Criteria criteria) {
+		   log.info("service:getList..");
+		   return boardMapper.getListWithPaging(criteria);
 	}
 
 }
