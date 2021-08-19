@@ -150,7 +150,7 @@
                     <thead style="border-bottom: solid 1px;">
                     <tr>
                     
-<div class="table-responsive outline pb-3">
+					<div class="table-responsive outline pb-3">
                 <table class="table custom-table" style="min-width: 500px;">
                     <thead style="border-bottom: solid 1px;">
                     <tr>
