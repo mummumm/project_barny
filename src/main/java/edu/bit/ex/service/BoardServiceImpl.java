@@ -26,6 +26,19 @@ public class BoardServiceImpl implements BoardService {
 
 		return boardMapper.getAdminList();
 	}
+	
+	//페이징 처리함수
+	   @Override
+	   public int getTotal2(Criteria cri) {
+		   log.info("service:getTotal()..");
+		   return boardMapper.getTotalCount2(cri);
+	}
+
+	   @Override
+	   public List<BoardVO> getAdminList(Criteria cri) {
+		   log.info("service:getList..");
+		   return boardMapper.getListWithPaging2(cri);
+	}
 
 	// 1:1문의 게시판 주문문의 게시판 하나 읽기
 	@Override
@@ -189,5 +202,7 @@ public class BoardServiceImpl implements BoardService {
 		   log.info("service:getList..");
 		   return boardMapper.getListWithPaging(criteria);
 	}
+
+	 
 
 }

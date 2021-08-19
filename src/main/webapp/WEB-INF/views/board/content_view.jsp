@@ -96,10 +96,10 @@
             <div class="list-group side-nav">
                 <a href="/admin/admin_member" class="list-group-item list-group-item-action">회원 관리</a>
                 <a href="#" class="list-group-item list-group-item-action">상품 관리</a>
-                <a href="/board/adminList" class="list-group-item list-group-item-action" aria-current="true" >
+                <a href="/board/adminList" class="list-group-item list-group-item-action active" aria-current="true" >
                     게시판 관리
                 </a>
-                <a href="#" class="list-group-item list-group-item-action active">주문 관리</a>
+                <a href="#" class="list-group-item list-group-item-action">주문 관리</a>
 
             </div>
         </div>

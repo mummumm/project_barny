@@ -94,10 +94,10 @@
             <div class="list-group side-nav">
                 <a href="/admin/admin_member" class="list-group-item list-group-item-action">회원 관리</a>
                 <a href="#" class="list-group-item list-group-item-action">상품 관리</a>
-                <a href="/board/adminList" class="list-group-item list-group-item-action" aria-current="true">
+                <a href="/board/adminList" class="list-group-item list-group-item-action active" aria-current="true">
                     게시판 관리
                 </a>
-                <a href="#" class="list-group-item list-group-item-action active">주문 관리</a>
+                <a href="#" class="list-group-item list-group-item-action">주문 관리</a>
 
             </div>
         </div>
@@ -131,11 +131,40 @@
          <td>${dto.b_date}</td>
       </tr>
       </c:forEach>
-      <tr>
+       <tr>
          <td colspan="5"> <a href="write_view">글작성</a> </td>
       </tr>
       
+     
+      	
 	</table>
+	<!--  Pagination -->
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a class="page-link"
+										href="adminList${pageMaker.makeQuery(pageMaker.startPage - 1) }"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+									</a></li>
+								</c:if>
+								<c:forEach var="idx" begin="${pageMaker.startPage }"
+									end="${pageMaker.endPage }">
+									<li class="page-item "><a class="page-link"
+										href="adminList${pageMaker.makeQuery(idx)}">${idx}</a></li>
+								</c:forEach>
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+									<li class="page-item"><a class="page-link"
+										aria-label="Next"
+										href="adminList${pageMaker.makeQuery(pageMaker.endPage +1) }">
+											<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+									</a></li>
+								</c:if>
+								
+							</ul>
+							
+						</nav>
+						
 
     <!-- Footer-->
 <footer class="footer">

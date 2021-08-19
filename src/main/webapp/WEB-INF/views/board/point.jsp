@@ -150,14 +150,15 @@
                     <thead style="border-bottom: solid 1px;">
                     <tr>
                     
+<div class="table-responsive outline pb-3">
+                <table class="table custom-table" style="min-width: 500px;">
+                    <thead style="border-bottom: solid 1px;">
+                    <tr>
+                        <td>적립금 + <sec:authentication property = "principal.memberVO.point"/>p</td>
+         
 
-	   <table width="500" cellpadding="0" cellspacing="0" border="1">
-      <tr>
-      
-         <td>적립금 : <sec:authentication property = "principal.memberVO.point"/></td>
-         
-         
-      </tr>
+            </tr>
+            </thead>
        <tbody>
       
       
@@ -165,18 +166,6 @@
       <tr>
          <td>${dto.point}</td>
          <tr>
-      <script>
-//       function button_event(){
-//     	  if (confirm("지정된 다음 달 결제일까지는 구독이 유효합니다") == true){    
-//     	      document.form.submit();
-//     	  }else{   //취소
-//     	      return;
-//     	  }
-//     	  }
-    	  //-->
-    	  </script>
-    	 
-    	   
 
 
       </tr>
@@ -204,24 +193,6 @@
       </tbody>
      
    </table>
-
-<script>
-// window.addEventListener('load', () => {
-//         const forms = document.getElementsByClassName('validation-form');
-//         Array.prototype.filter.call(forms, (form) => {
-//             form.addEventListener('submit', function (event) { //이 addEventListener 가 submit 이라는 이벤트를 발생시켰을떄 function실행
-//                 if (form.checkValidity() === false) {
-//                     event.preventDefault();
-//                     event.stopPropagation();
-//                 }
-//                 form.classList.add('was-validated');
-//             }, false);
-//         });
-//     }, false); 
-
-
-
-
 
 
 </body>

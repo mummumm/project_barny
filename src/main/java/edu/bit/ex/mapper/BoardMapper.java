@@ -71,16 +71,21 @@ public interface BoardMapper {
 
 	// 구독 취소
 	public void update_modify(BoardVO boardVO);
-	
-	//구매취소
+
+	// 구매취소
 	public void ship_remove(int ship_id);
-	
-	//포인트
+
+	// 포인트
 	public List<MemberVO> getPointList(int member_idx);
 
+	// 페이징
 	public List<BoardVO> getListWithPaging(Criteria criteria);
 
 	public int getTotalCount(Criteria cri);
 
+	// 페이징
+	public List<BoardVO> getListWithPaging2(Criteria criteria);
+
+	public int getTotalCount2(Criteria cri);
 
 }
