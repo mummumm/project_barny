@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 
+	private int member_idx;
     private int pageNum; // 페이지 번호
     private int amount; // 한페이지당 몇개의 데이터를 보여줄것인가?
 

@@ -182,4 +182,49 @@
 	]]>
 	</select>
 	
+	
+	<select id="getTotalCount" resultType = "int">
+	<![CDATA[
+		select count(*) from barny_board where board_type_id=2 and member_idx=#{member_idx}
+	]]>
+	</select>	
+	
+<!-- 	열개씩 뽑아내는거 한페이지에 출력해주는 역할 -->
+	<select id="getListWithPaging" resultType = "edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		         SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             barny_board where board_type_id=2 and member_idx=#{member_idx} order by b_Group desc, b_Step asc   
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+		
+	
+	]]>
+	</select>
+	
+	<select id="getTotalCount2" resultType = "int">
+	<![CDATA[
+		select count(*) from barny_board
+	]]>
+	</select>	
+	
+<!-- 	열개씩 뽑아내는거 한페이지에 출력해주는 역할 -->
+	<select id="getListWithPaging2" resultType = "edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		         SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             barny_board  
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+		
+	
+	]]>
+	</select>
+	
 </mapper>

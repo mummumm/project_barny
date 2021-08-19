@@ -124,6 +124,8 @@
                         <td colspan="3"><input type="text" class="textarea-custom py-1" style="padding-left:10px;"
                                                id="b_title" name="b_title" value="${review_content_view.b_title}"></td>
          </tr>
+         
+         
 <!--          <tr> -->
 <!--              <td class="content_head"> 번호</td> -->
 <%--                         <td style="width:70px; border-right : solid 1px; border-right-color: #dee2e6;"> ${review_content_view.board_id} </td> --%>
@@ -143,25 +145,35 @@
            <td class="content_head"> 내용</td>
                         <td colspan="4"><textarea class="textarea-custom" rows="10" id="b_content" name="b_content"
                                                   style="padding-top: 1rem; padding-bottom: 5rem; padding-left:10px; width: 100%;">${review_content_view.b_content}</textarea>
+             <div class="form-group">
+                            <label for="inputFile" class="col-form-label">첨부 파일</label>
+                            <div class="custom-file" id="inputFile">
+                                <input name="file" type="file" class="custom-file-input" id="customFile"
+                                    accept="image/png, image/jpeg" multiple>
+                                <label class="custom-file-label" for="customFile">파일을 선택해 주세요.</label>
+                            </div>
          </tr>
          
-          <tr >
-            <td colspan="2"> 
+           			<tr>
+                        <td colspan="4" class="py-3">
+                            <div class="row">
+            <div class="col-15" style="text-align: right"> 
             <input type="submit" value="수정"class="btn-basic text-uppercase"> &nbsp;&nbsp; <a href="my_review" class="btn-basic text-uppercase">목록보기</a> &nbsp;&nbsp;
-            <a id="a-delete" href="${pageContext.request.contextPath}/board/review_delete?board_id=${review_content_view.board_id}"class="btn-basic text-uppercase">삭제</a> 
+            <a id="a-delete" href="${pageContext.request.contextPath}/board/review_delete?board_id=${review_content_view.board_id}"class="btn-basic text-uppercase">삭제</a>
+         </div>
+         </div>
              </td>
          </tr>
-         
-         
+     
       </form>
-                </table>
-           
-            
+             </table>
             <div class="line mb-3" style="border-bottom: solid 2px; border-bottom-color: #EBC24B;"></div>
                 <a class="btn-basic post mb-2" type="button" title="글쓰기" onclick="location.href='/board/my_view_write'">글쓰기</a>
-            </div>
         </div>
-</div>
+    </div>
+</div>    
+           
+            
 
 <!-- Footer-->
 <footer class="footer">

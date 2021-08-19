@@ -2,6 +2,7 @@ package edu.bit.ex.service;
 
 import java.util.List;
 
+import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
 import edu.bit.ex.vo.MemberVO;
 import edu.bit.ex.vo.OrderDetailVO;
@@ -10,8 +11,7 @@ import edu.bit.ex.vo.ProductMainVO;
 
 public interface BoardService {
 	// 관리자리스트
-	public List<BoardVO> getAdminList();
-
+	public List<BoardVO> getAdminList(Criteria cri);
 	// 관리자주문내역읽기
 	public BoardVO get(int board_id);
 
@@ -25,7 +25,7 @@ public interface BoardService {
 	public void writeBoard(BoardVO boardVO);
 	
 	
-	
+	int getTotal2(Criteria cri);
 	
 	
 	
@@ -83,6 +83,14 @@ public interface BoardService {
 	public void ship_remove(int ship_id);
 	//포인트
 	public List<MemberVO> getPointList(int member_idx);
+	
+	
+	//페이징
+	public int getTotal(Criteria cri);
+
+	List<BoardVO> getReviewList(Criteria criteria);
+	List<BoardVO> getAdminList();
+
 
 
 
