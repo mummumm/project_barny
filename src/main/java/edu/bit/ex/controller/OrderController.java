@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,18 +79,17 @@ public class OrderController {
 	}	
 					
 	@ResponseBody	 
-	/* @GetMapping("/user/insertOrder") */
-	@RequestMapping(value="/user/insertOrder", method = {RequestMethod.POST})
-	public String insertOrder(OrderPaymentVO orderPaymentVO, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
+	@PostMapping("/user/insertOrder")
+	public String insertOrder(@RequestBody OrderPaymentVO orderPaymentVO, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
 		
 		log.info("insertOrder() ..");
 		
 		log.info("principal" + principal.getName());
 		log.info("principal" + ctx.getMemberVO().getMember_idx());
 		
-		log.info("orderDetailVO().." + orderPaymentVO);
-		
 		orderPaymentVO.setMember_idx(ctx.getMemberVO().getMember_idx());
+		
+		log.info("orderDetailVO().." + orderPaymentVO);
 		
 		orderService.insertOrder(orderPaymentVO);
 		
@@ -117,6 +117,9 @@ public class OrderController {
 	
 	@GetMapping("/orderPage")
 	public String orderPage() {
+		
+		log.info("/orderPage");
+		
 		return "order/orderPage";
 	}
 	

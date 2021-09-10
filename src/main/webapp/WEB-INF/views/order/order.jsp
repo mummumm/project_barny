@@ -320,7 +320,7 @@
 </body>
 
 <!-- 아임포트 -->
-<script>
+<!-- <script>
 	$(document).ready(function(){
 			
 	    var IMP = window.IMP;
@@ -375,7 +375,7 @@
 	    });
 	    });
 	});    	    	   
-</script>  
+</script>  --> 
 
 <!--  <script>
 	$(document).ready(function(){
@@ -462,7 +462,82 @@
 	    });
 	    });
 	});    	    	   
-</script> --> 
+</script>  -->
+
+ <script>
+	$(document).ready(function(){
+			
+	    var IMP = window.IMP;
+	    IMP.init("imp13011359");
+	    
+	    var member_name = $("#name").val();
+	    var tel = $("#tel").val();
+	    var address = $("#address").val();
+	    var email = $("#email").val();
+	    var point = $("#point1").val(); 
+	    var total_price =$("#total").val();	    
+	    
+	    $("#payment").click(function(event) {
+	    IMP.request_pay({
+	        pg : 'inicis',
+	        pay_method : 'card',
+	        merchant_uid : 'merchant_' + new Date().getTime(),
+	        name : 'A패키지',
+	        amount : /* total_price */100,
+	        buyer_email : email,
+	        buyer_name : member_name,
+	        buyer_tel : tel,
+	        buyer_addr : address,
+	        buyer_postcode : '123-456'
+		}, function (rsp) {
+			console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				msg += '고유ID : ' + rsp.imp_uid;
+				msg += '상점 거래ID : ' + rsp.merchant_uid;
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				msg += '카드 승인번호 : ' + rsp.apply_num;
+				var insertOrder = {
+						member_name : member_name,
+						tel : tel,
+						address : address,
+						email : email,
+						point : point + 100, 
+						total_price : total_price
+						 }
+				// 컨트롤러에 데이터를 전달하여 DB에 입력하는 로직
+                		// 결제내역을 사용자에게 보여주기 위해 필요함.
+               	$.ajax({
+					url : "/user/insertOrder",
+					
+					cache: false,
+					type : 'POST',
+					dataType : 'text',
+					contentType: 'application/json; charset=utf-8',					
+					data : JSON.stringify(insertOrder),
+					success : function(result){
+						if(result == "SUCCESS") {
+							alert(msg);
+							location.href='${pageContext.request.contextPath}/orderPage'; 
+						}else{
+							alert("디비입력실패");
+							return false;
+						}
+					},
+					error : function(a,b,c){}
+				});
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+		alert(msg);
+		}); 
+
+	    });
+	});    	    	   
+</script> 
+
+  	
 
 <!-- 적립금 -->
 	<script type="text/javascript">
